@@ -1,6 +1,7 @@
 import express, { json } from "express";
 import cookieParser from "cookie-parser";
 import cors from "cors";
+// import multer from "multer";
 
 import authRoute from "./routes/auth.route.js";
 import testRoute from "./routes/test.route.js";

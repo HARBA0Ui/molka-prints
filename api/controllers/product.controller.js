@@ -6,7 +6,7 @@ export const getAllProducts = async (req, res) => {
 };
 export const getProduct = async (req, res) => {
   try {
-    const {id} = req.params;
+    const { id } = req.params;
     const product = await prisma.product.findUnique({
       where: { id },
     });
@@ -17,15 +17,6 @@ export const getProduct = async (req, res) => {
   }
 };
 
-export const createProduct = async (req, res) => {
-  try {
-    await prisma.product.create({
-      data: req.body,
-    });
-  } catch (err) {
-    console.log(err);
-  }
-};
 export const updateProduct = async (req, res) => {
   const { id } = req.params.id;
 };
@@ -35,9 +26,24 @@ export const deleteProduct = async (req, res) => {
     await prisma.product.delete({
       where: { id },
     });
-    return res.status(200).json({message: "Product is deleted successfully!"})
-    
+    return res
+      .status(200)
+      .json({ message: "Product is deleted successfully!" });
   } catch (err) {
     return res.status(500).json({ message: "Couldn't delete the product!" });
+  }
+};
+
+// Create a new product
+
+export const createProduct = (req, res) => {
+  console.log("req.file: ", req.file);
+  try {
+    // console.log("req.body: ", req)
+    // await prisma.product.create({
+    //   data: req.body,
+    // });
+  } catch (err) {
+    console.log(err);
   }
 };

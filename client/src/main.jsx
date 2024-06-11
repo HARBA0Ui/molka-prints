@@ -5,17 +5,30 @@ import "./index.css";
 import Home from "./routes/home/Home";
 import Login from "./routes/login/Login";
 import NotFound from "./routes/NotFound";
-import Dashboard from "./routes/dashboard/Dashboard";
 import Layout from "./routes/Layout";
+import Settings from "./routes/Settings/Settings";
+import CreateProductPage from "./routes/CreateProduct/CreateProduct";
+import DashboardLayout from "./routes/dashboard/DashboardLayout";
+import Dashboard from "./routes/dashboard/components/Main/Dashboard";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Layout />,
+    errorElement: <NotFound />,
     children: [
-      { path: "/", element: <Home />, errorElement: <NotFound /> },
-      { path: "login", element: <Login />, errorElement: <NotFound /> },
-      { path: "dashboard", element: <Dashboard />, errorElement: <NotFound /> },
+      { path: "/", element: <Home /> },
+      { path: "login", element: <Login /> },
+      {
+        path: "dashboard",
+        element: <DashboardLayout />,
+        errorElement: <NotFound />,
+        children: [
+          { path: "/dashboard", element: <Dashboard /> },
+          { path: "settings", element: <Settings /> },
+          { path: "create", element: <CreateProductPage /> },
+        ],
+      },
     ],
   },
 ]);

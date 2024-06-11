@@ -1,9 +1,9 @@
 import { useContext, useEffect } from "react";
 import { AuthContext } from "../../context/AuthContext";
-import { useNavigate } from "react-router-dom";
+import { Outlet, useNavigate } from "react-router-dom";
 import Sidebar from "./components/sidebar/Sidebar";
 
-function Dashboard() {
+function DashboardLayout() {
   const { admin } = useContext(AuthContext);
   const navigate = useNavigate();
   // console.log("admin: ", admin)
@@ -15,11 +15,11 @@ function Dashboard() {
   return (
     <div className="flex">
       <Sidebar />
-      <div className="px-8 pt-8">
-        <h1 className="font-bold text-4xl text-center capitalize tracking-wide mb-2 text-zinc-800">Admin Dashboard</h1>
-      </div>
+      <main className="p-8 w-[calc(100vw-128px)]">
+        <Outlet/>
+      </main>
     </div>
   );
 }
 
-export default Dashboard;
+export default DashboardLayout;
