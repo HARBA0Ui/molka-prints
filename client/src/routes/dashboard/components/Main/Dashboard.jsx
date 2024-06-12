@@ -3,18 +3,20 @@ import apiRequest from "../../../../lib/apiRequest";
 import { CgSpinnerTwo, CgMathPlus } from "react-icons/cg";
 import { Link } from "react-router-dom";
 import ProductsTable from "../ProductsTable/ProductsTable"
-import Title from "../Title";
-
+import Title from "../../../../components/Title";
 
 function Dashboard() {
   const [products, setProducts] = useState(undefined);
-  const fetchData = async () => {
-    const res = await apiRequest.get("/products");
-    setProducts(res.data);
-  };
+
 
   useEffect(() => {
-    fetchData();
+    const fetchData = async () => {
+      const res = await apiRequest.get("/products");
+      setProducts(res.data);
+      console.log(res.data)
+    };
+
+    fetchData()
   }, []);
 
   return (

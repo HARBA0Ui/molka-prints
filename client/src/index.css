@@ -8,13 +8,51 @@
 }
 
 :root {
-  --purpy: #9b60af;
+  --purpy: #690e88;
+  --pinky: #ff4c76;
   --darker-purple: #690e88;
 }
 
 body {
   background: #FFE3E8;
   overflow-x: hidden
+}
+
+#fileTd{
+  position: relative;
+}
+
+#fileTd{
+  height: 250px;
+  border-radius: 1rem;
+}
+
+input[type='file']{
+  all: unset;
+  background: blue;
+  opacity: 0;
+  position: absolute;
+  inset: 0;
+  cursor: pointer;
+  border-radius: 1rem;
+}
+
+#fileOverlay{
+  background: white;
+  font-size: 18px;
+  position: absolute;
+  border-radius: 1rem;
+  inset: 0;
+  pointer-events: none;
+  cursor: pointer;
+  color: #222;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  transition: .1s ease-in-out;
 }
 
 @tailwind base;

@@ -9,7 +9,7 @@ import "./sidebar.module.css";
 function Sidebar() {
   return (
     <div>
-      <aside className="w-32 bg-pinky flex flex-col h-screen gap-4 pt-12 text-pinky text-sm relative border-r">
+      <aside className="w-32 bg-pinky flex flex-col fixed top-[15vh] bottom-0 gap-4 pt-12 text-pinky text-sm">
         <ul className="flex flex-col gap-4 flex-1">
           <Link
             to={"/dashboard"}

@@ -89,6 +89,7 @@ function LoginPage() {
             <button
               disabled={isLoading}
               type="submit"
+              id="loginbtn"
               className={`
                 ${isLoading && "[border-radius: 5rem]"}
                 w-full h-14 text-white mt-6  bg-pinky hover:bg-pinky/95 text-xl relative

@@ -20,6 +20,7 @@ export const getProduct = async (req, res) => {
 export const updateProduct = async (req, res) => {
   const { id } = req.params.id;
 };
+
 export const deleteProduct = async (req, res) => {
   const { id } = req.params;
   try {
@@ -36,13 +37,18 @@ export const deleteProduct = async (req, res) => {
 
 // Create a new product
 
-export const createProduct = (req, res) => {
-  console.log("req.file: ", req.file);
+export const createProduct = async (req, res) => {
+  const imgs= []
+  req.files.forEach(file => imgs.push(file.filename))
+  const {title, desc, price:reqPrice}= req.body;
+  const price= parseFloat(reqPrice)
+  const product= {title, desc, imgs, price}
+  console.log("product", product)
   try {
-    // console.log("req.body: ", req)
-    // await prisma.product.create({
-    //   data: req.body,
-    // });
+    await prisma.product.create({
+      data: product
+    })
+    return res.status(200).json({messaage: "The product has been added successfully!"})
   } catch (err) {
     console.log(err);
   }

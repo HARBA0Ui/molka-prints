@@ -36,6 +36,6 @@ const upload = multer({
   storage,
 });
 
-router.post("/", upload.single("images"), createProduct);
+router.post("/", upload.array("images", 4), createProduct);
 
 export default router;

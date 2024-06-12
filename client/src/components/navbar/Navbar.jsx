@@ -3,8 +3,8 @@ import "./navbar.module.css"
 
 function Navbar() {
   return (
-    <header className="bg-pinky text-white">
-      <nav className="h-[15vh] flex my-auto justify-between items-center px-8 md:px-14 lg:px-40 shadow-md">
+    <header className="text-white">
+      <nav className="fixed bg-pinky w-full h-[15vh] flex my-auto justify-between items-center px-8 md:px-14 lg:px-40 shadow-md">
         <Link to={"/"}>
           <img src="/logo.jpg" className="w-16 h-16 rounded-full drop-shadow-md hover:scale-110 transition-all"/>
         </Link>

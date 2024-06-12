@@ -15,7 +15,7 @@ function DashboardLayout() {
   return (
     <div className="flex">
       <Sidebar />
-      <main className="p-8 w-[calc(100vw-128px)]">
+      <main className="p-8 mt-[15vh] ml-32 flex-1">
         <Outlet/>
       </main>
     </div>

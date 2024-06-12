@@ -8,10 +8,10 @@ input:focus{
     outline: none;
 }
 
-form button{
+#loginbtn{
     transition: all .3s ease-in;
 }
 
-form button:hover{
+#loginbtn:hover{
     border-radius: 5rem;
 }
