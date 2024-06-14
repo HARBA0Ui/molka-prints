@@ -12,7 +12,7 @@ function Sidebar() {
       <aside className="w-32 bg-pinky flex flex-col fixed top-[15vh] bottom-0 gap-4 pt-12 text-pinky text-sm">
         <ul className="flex flex-col gap-4 flex-1">
           <Link
-            to={"/dashboard"}
+            to={"/dashboard"} reloadDocument={true}
             className="flex gap-2 bg-white w-full items-center px-2 py-3"
           >
             <AiFillSwitcher className="w-6 h-6" /> <span>Dashboard</span>

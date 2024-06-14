@@ -14,20 +14,20 @@
 }
 
 body {
-  background: #FFE3E8;
-  overflow-x: hidden
+  background: #ffe3e8;
+  overflow-x: hidden;
 }
 
-#fileTd{
+#fileTd {
   position: relative;
 }
 
-#fileTd{
+#fileTd {
   height: 250px;
   border-radius: 1rem;
 }
 
-input[type='file']{
+input[type="file"] {
   all: unset;
   background: blue;
   opacity: 0;
@@ -37,7 +37,7 @@ input[type='file']{
   border-radius: 1rem;
 }
 
-#fileOverlay{
+#fileOverlay {
   background: white;
   font-size: 18px;
   position: absolute;
@@ -52,7 +52,41 @@ input[type='file']{
   justify-content: center;
   align-items: center;
 
-  transition: .1s ease-in-out;
+  transition: 0.3s ease-in-out;
+}
+
+#fileTd:hover #fileOverlay {
+  background: var(--pinky);
+  color: white;
+}
+
+#fileTd:hover #fileOverlay svg {
+  color: white;
+}
+
+main button {
+  position: relative;
+  z-index: 1;
+  transition: 0.2s ease-in;
+  transition-delay: 0.1s;
+}
+
+main button::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  width: 0%;
+  height: 100%;
+  z-index: -1;
+  transition: 0.2s ease-in-out;
+}
+
+main button::before {
+  background: var(--darker-purple);
+}
+
+main button:hover::before {
+  width: 100%;
 }
 
 @tailwind base;

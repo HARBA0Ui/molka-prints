@@ -6,10 +6,11 @@ import Home from "./routes/home/Home";
 import Login from "./routes/login/Login";
 import NotFound from "./routes/NotFound";
 import Layout from "./routes/Layout";
-import Settings from "./routes/Settings/Settings";
-import CreateProductPage from "./routes/CreateProduct/CreateProduct";
+import Settings from "./routes/dashboard/Settings/Settings";
+import CreateProduct from "./routes/dashboard/CreateProduct/CreateProduct";
 import DashboardLayout from "./routes/dashboard/DashboardLayout";
 import Dashboard from "./routes/dashboard/components/Main/Dashboard";
+import UpdatePage from "./routes/dashboard/update/UpdatePage";
 
 const router = createBrowserRouter([
   {
@@ -26,7 +27,8 @@ const router = createBrowserRouter([
         children: [
           { path: "/dashboard", element: <Dashboard /> },
           { path: "settings", element: <Settings /> },
-          { path: "create", element: <CreateProductPage /> },
+          { path: "create", element: <CreateProduct /> },
+          { path: "update/:id", element: <UpdatePage /> },
         ],
       },
     ],

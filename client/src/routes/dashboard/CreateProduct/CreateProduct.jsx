@@ -1,14 +1,19 @@
 import { useState } from "react";
-import Title from "../../components/Title";
-import apiRequest from "../../lib/apiRequest";
+import Title from "../../../components/Title";
+import apiRequest from "../../../lib/apiRequest";
 import { HiMiniCursorArrowRays } from "react-icons/hi2";
 import { AiFillCheckCircle } from "react-icons/ai";
+import { useNavigate } from "react-router-dom";
+import { CgSpinnerTwo } from "react-icons/cg";
 
 const CreateProduct = () => {
   const [images, setImages] = useState([]);
   const [title, setTitle] = useState("");
   const [desc, setDesc] = useState("");
   const [price, setPrice] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+
+  const navigate = useNavigate("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -16,6 +21,7 @@ const CreateProduct = () => {
       return;
     }
     try {
+      setIsLoading(true);
       const formData = new FormData();
       formData.append("title", title);
       formData.append("desc", desc);
@@ -24,9 +30,17 @@ const CreateProduct = () => {
       Array.from(images).forEach((img) => formData.append("images", img));
 
       const res = await apiRequest.post("/products/", formData);
+
+      setTitle("");
+      setDesc("");
+      setPrice("");
+      setImages([]);
       console.log("res: ", res);
+      navigate("/dashboard");
     } catch (err) {
       console.log(err);
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -105,7 +119,7 @@ const CreateProduct = () => {
                   ) : (
                     <div className="flex items-center flex-col gap-2">
                       <span>Files uploaded successfully</span>
-                      <AiFillCheckCircle className="w-10 h-10 text-pinky"/>
+                      <AiFillCheckCircle className="w-10 h-10 text-pinky" />
                     </div>
                   )}
                 </div>
@@ -116,9 +130,12 @@ const CreateProduct = () => {
               <td className="flex justify-center my-4 py-3">
                 <button
                   type="submit"
-                  className="bg-darkPruple px-4 py-3 text-white w-full h-16 text-md font-bold uppercase hover:tracking-widest transition-all"
+                  className="bg-darkPruple px-4 py-3 text-white w-full h-16 text-md font-bold uppercase hover:tracking-widest transition-all flex justify-center items-center gap-4"
                 >
                   Add Product
+                  {isLoading && (
+                    <CgSpinnerTwo className="w-6 h-6 animate-spin text-white" />
+                  )}
                 </button>
               </td>
             </tr>

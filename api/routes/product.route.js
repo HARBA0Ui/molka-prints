@@ -7,6 +7,7 @@ import {
   deleteProduct,
   getAllProducts,
   getProduct,
+  getProductByTitle,
   updateProduct,
 } from "../controllers/product.controller.js";
 
@@ -15,7 +16,7 @@ const router = express.Router();
 
 router.get("/", getAllProducts);
 router.get("/:id", getProduct);
-router.put("/:id", updateProduct);
+router.get("/search/:title", getProductByTitle);
 router.delete("/:id", deleteProduct);
 
 // create product
@@ -37,5 +38,9 @@ const upload = multer({
 });
 
 router.post("/", upload.array("images", 4), createProduct);
+
+//update Product
+
+router.put("/:id", upload.array("images", 4),updateProduct);
 
 export default router;
