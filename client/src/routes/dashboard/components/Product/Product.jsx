@@ -2,21 +2,27 @@ import { AiFillEdit, AiFillDelete } from "react-icons/ai";
 import { Link } from "react-router-dom";
 import baseURL from "../../../../lib/basicUrlRequest";
 import apiRequest from "../../../../lib/apiRequest";
-import { memo } from "react";
+import { memo, useState } from "react";
+import LoadingSpinner from "../../../../components/LoadingSpinner";
 
 /* eslint-disable react/prop-types */
 function Product({ product: p }) {
+  const [isLoading, setIsLoading]= useState(false)
+
   const handleDelete = async () => {
+    setIsLoading(true)
     try {
       const res = await apiRequest.delete("/products/" + p.id);
       console.log(res);
       window.location.reload();
     } catch (err) {
       console.log(err);
+    }finally{
+      setIsLoading(false)
     }
   };
   return (
-    <>
+    <div className="flex items-center gap-2">
       <article className="rounded-md bg-white shadow-md p-4 text-center text-lg flex justify-between items-center w-[750px]">
         {/* skeleton????x */}
         <img
@@ -37,7 +43,8 @@ function Product({ product: p }) {
           </button>
         </div>
       </article>
-    </>
+      {isLoading && <LoadingSpinner/>}
+    </div>
   );
 }
 export default memo(Product);

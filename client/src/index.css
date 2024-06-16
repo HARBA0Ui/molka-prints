@@ -64,28 +64,27 @@ input[type="file"] {
   color: white;
 }
 
-main button {
+#btn {
   position: relative;
   z-index: 1;
-  transition: 0.2s ease-in;
-  transition-delay: 0.1s;
+  transition: 0.1s ease-in;
 }
 
-main button::before {
+#btn::before {
   content: "";
   position: absolute;
   left: 0;
   width: 0%;
   height: 100%;
   z-index: -1;
-  transition: 0.2s ease-in-out;
+  transition: width 0.2s ease-in-out;
 }
 
-main button::before {
+#btn::before {
   background: var(--darker-purple);
 }
 
-main button:hover::before {
+#btn:hover::before {
   width: 100%;
 }
 

@@ -1,5 +1,8 @@
 import prisma from "../db/prisma.js";
 
+import fs from "fs";
+import path from "path";
+
 export const getAllProducts = async (req, res) => {
   const products = await prisma.product.findMany();
   return res.status(200).json(products);
@@ -20,13 +23,13 @@ export const getProduct = async (req, res) => {
 
 export const getProductByTitle = async (req, res) => {
   try {
-    const {title}= req.params;
+    const { title } = req.params;
     const product = await prisma.product.findMany({
       where: {
-        title:{
+        title: {
           contains: title,
-          mode: 'insensitive',
-        }
+          mode: "insensitive",
+        },
       },
     });
 
@@ -39,17 +42,50 @@ export const getProductByTitle = async (req, res) => {
   }
 };
 
+// export const deleteProduct = async (req, res) => {
+//   const { id } = req.params;
+//   try {
+//     await prisma.product.delete({
+//       where: { id },
+//     });
+//     return res
+//       .status(200)
+//       .json({ message: "Product is deleted successfully!" });
+//   } catch (err) {
+//     return res.status(500).json({ message: "Couldn't delete the product!" });
+//   }
+// };
+
 export const deleteProduct = async (req, res) => {
-  const { id } = req.params;
+
+  const {id}= req.params
   try {
+    const product = await prisma.product.findUnique({
+      where: { id },
+    });
+
+    if (!product) {
+      return res.status(404).json({ message: "Product not found" });
+    }
+
+    // Delete the image files from the server
+    product.imgs.forEach((imageFilename) => {
+      const imagePath = path.join("public", "Images", imageFilename);
+      fs.unlink(imagePath, (err) => {
+        if (err) {
+          console.error("Error deleting image file:", err);
+        }
+      });
+    });
+
     await prisma.product.delete({
       where: { id },
     });
-    return res
-      .status(200)
-      .json({ message: "Product is deleted successfully!" });
+
+    res.json({ message: "Product deleted successfully" });
   } catch (err) {
-    return res.status(500).json({ message: "Couldn't delete the product!" });
+    console.error("Error deleting product:", err);
+    res.status(500).json({ message: "Server error" });
   }
 };
 

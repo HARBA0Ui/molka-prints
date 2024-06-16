@@ -55,26 +55,27 @@ function Dashboard() {
   // })
 
   return (
-    <div className="w-full flex flex-col items-center">
+    <div className="w-full flex flex-col items-center pb-10">
       <Title title="Admin Dashboard" />
       <div className="flex justify-between items-center w-[700px] mb-10">
         <Link
           to="/dashboard/create"
-          className="flex  gap-2 text-lg items-center px-4 py-2 rounded-full text-white bg-darkPruple hover:bg-pinky transition-all"
+          className="flex  gap-2 text-lg items-center px-4 py-2 rounded-tr-md rounded-bl-md text-white bg-darkPruple hover:bg-pinky transition-all"
         >
           <CgMathPlus className="w-5 h-5" /> Create a new product
         </Link>
         <form onSubmit={handleSubmit}>
-          <div className="flex items-center bg-white gap-4 h-fit py-2 px-4 ">
+          <div className="flex items-center bg-darkPruple text-white gap-4 h-fit py-2 text-sm px-4 rounded-tl-md rounded-br-md">
             <input
               type="text"
               placeholder="Search..."
               value={searchField}
               onChange={(e) => setSearchField(e.target.value)}
+              className="bg-darkPruple placeholder:text-white/80"
             />
             <button
               type="submit"
-              className="cursor-pointer transition-all p-2 pr-[10px] rounded-full flex justify-center items-center text-white bg-pinky hover:bg-darkPruple "
+              className="cursor-pointer transition-all p-1 pr-[8px] rounded-full flex justify-center items-center text-darkPruple hover:text-white bg-white hover:bg-pinky "
             >
               <CgSearch className="w-5 h-5 " />
             </button>
