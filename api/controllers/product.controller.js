@@ -4,9 +4,24 @@ import fs from "fs";
 import path from "path";
 
 export const getAllProducts = async (req, res) => {
-  const products = await prisma.product.findMany();
-  return res.status(200).json(products);
+  try {
+    const page = parseInt(req.query.page) || 1; 
+    const limit = parseInt(req.query.limit) || 8; 
+
+    const skip = (page - 1) * limit;
+
+    const products = await prisma.product.findMany({
+      skip: skip,
+      take: limit,
+    });
+
+    return res.status(200).json(products);
+  } catch (err) {
+    return res.status(500).json({ message: "Couldn't fetch products!" });
+  }
 };
+
+
 export const getProduct = async (req, res) => {
   try {
     const { id } = req.params;
@@ -57,8 +72,7 @@ export const getProductByTitle = async (req, res) => {
 // };
 
 export const deleteProduct = async (req, res) => {
-
-  const {id}= req.params
+  const { id } = req.params;
   try {
     const product = await prisma.product.findUnique({
       where: { id },

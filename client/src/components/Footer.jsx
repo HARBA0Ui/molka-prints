@@ -13,12 +13,12 @@ function Footer() {
         >
           <img
             src="/logo.jpg"
-            className="w-16 h-16 rounded-full drop-shadow-md group-hover:scale-110 transition-all"
+            className="w-12 md:w-16 h-12 md:h-16 rounded-full drop-shadow-md group-hover:scale-110 transition-all"
           />
-          <span className="text-xl">Molka Prints</span>
+          <span className="text-base md:text-xl">Molka Prints</span>
         </Link>
         <div>
-          <h2 className="text-2xl uppercase w-fit mb-1">Contact</h2>
+          <h2 className="text-base md:text-2xl uppercase w-fit mb-1">Contact</h2>
           <a
             href="https://www.instagram.com/molka_prints?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="
             className="flex items-center justify-start gap-3 mb-1"

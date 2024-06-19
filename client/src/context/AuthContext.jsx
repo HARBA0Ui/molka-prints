@@ -16,7 +16,9 @@ function AuthContextProvider({ children }) {
   }, [admin]);
 
   return (
-    <AuthContext.Provider value={{ admin, updateAdmin }}>{children}</AuthContext.Provider>
+    <AuthContext.Provider value={{ admin, updateAdmin }}>
+      {children}
+    </AuthContext.Provider>
   );
 }
 

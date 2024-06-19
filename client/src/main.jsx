@@ -12,6 +12,8 @@ import DashboardLayout from "./routes/dashboard/DashboardLayout";
 import Dashboard from "./routes/dashboard/components/Main/Dashboard";
 import UpdatePage from "./routes/dashboard/update/UpdatePage";
 import ProductsPage from "./routes/Products/ProductsPage";
+import SearchPage from "./routes/search/SearchPage";
+import ProductIdPage from "./routes/productidpage/ProductIdPage";
 
 const router = createBrowserRouter([
   {
@@ -22,6 +24,8 @@ const router = createBrowserRouter([
       { path: "/", element: <Home /> },
       { path: "login", element: <Login /> },
       { path : "products", element: <ProductsPage/>},
+      { path : "search/:title", element: <SearchPage/>},
+      { path : "/:id", element: <ProductIdPage/>},
       {
         path: "dashboard",
         element: <DashboardLayout />,
