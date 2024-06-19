@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 function Banner() {
   return (
-    <main className="flex h-[70vh] text-zinc-900 relative">
+    <main className="flex pt-16 sm:pt-0 sm:h-[70vh] text-zinc-900 relative">
       <div className="w-[90vw] md:w-[75vw] h-full flex flex-col-reverse md:flex-row justify-center text-center md:text-left md:justify-between gap-4 items-center mx-auto ">
         <div>
           <h1 className="text-5xl md:text-5xl lg:text-[6vw] font-bold uppercase">

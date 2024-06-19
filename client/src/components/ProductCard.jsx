@@ -22,7 +22,7 @@ function ProductCard({ product }) {
           />
         )}
       </div>
-      <div className="text-sm md:text-md border-2 border-pink-400 border-b-0 flex flex-col justify-center items-center text-center w-full bg-white group-hover:bg-pinky text-zinc-900 group-hover:text-white group-hover:border-0 transition-all h-14 md:h-16">
+      <div className="text-xs sm:text-sm md:text-md border-2 border-pink-400 border-b-0 flex flex-col justify-center items-center text-center w-full bg-white group-hover:bg-pinky text-zinc-900 group-hover:text-white group-hover:border-0 transition-all h-14 md:h-16">
         <span className="capitalize">{product.title}</span>
         <span className="font-bold">{product.price} DT</span>
       </div>

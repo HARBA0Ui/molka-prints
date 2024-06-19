@@ -70,11 +70,11 @@ function Home() {
             </div>
           )}
 
-          <div className="flex justify-center pt-3 border-green-900">
+          <div className="flex justify-center pt-3">
             <Link
               to={"/products"}
               id="btn"
-              className="group mx-auto py-3 px-6 mt-5 flex justify-center items-center gap-1 bg-pinky text-white rounded before:rounded font-medium text-xl shadow-md"
+              className="group mx-auto py-3 px-6 mt-5 flex justify-center items-center gap-1 bg-pinky text-white font-medium text-xl shadow-md"
             >
               View More
               <FaCaretRight className="group-hover:translate-x-2 w-5 h-5 transition-all" />

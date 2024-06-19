@@ -130,6 +130,7 @@ const CreateProduct = () => {
               <td className="flex justify-center my-4 py-3">
                 <button
                   type="submit"
+                  id="btn"
                   className="bg-darkPruple px-4 py-3 text-white w-full h-16 text-md font-bold uppercase hover:tracking-widest transition-all flex justify-center items-center gap-4"
                 >
                   Add Product

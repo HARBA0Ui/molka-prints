@@ -22,15 +22,19 @@ function ProductIdPage() {
       const tel = formData.get("tel");
       const email = formData.get("email");
       const city = formData.get("city");
+      const { title } = product;
 
-      const userInfo = { username, tel, email, city };
+      const orderInfo = { username, tel, email, city, title, id };
 
-      const res = await apiRequest.post("/email/send-email", userInfo);
+      const res = await apiRequest.post("/email/order-email", orderInfo);
       setMessage(res.data.message);
     } catch (err) {
       console.log(err);
     } finally {
       setMessageIsLoading(false);
+      setTimeout(() => {
+        setMessage("");
+      }, 2000);
     }
   };
 
@@ -78,27 +82,27 @@ function ProductIdPage() {
   }, []);
 
   return (
-    <div className="m-auto flex justify-center items-center min-h-[70vh] w-[70vw] py-20">
+    <div className="m-auto flex justify-center items-center min-h-[70vh] w-[90vw] xl:w-[70vw] max-w-[1440px] py-20">
       {isLoading ? (
         <div className="h-full w-full flex justify-center items-center flex-1">
           <CgSpinnerTwo className="w-6 h-6 animate-spin mx-auto text-white" />
         </div>
       ) : (
-        <div className="flex justify-center items-center w-full gap-32">
+        <div className="flex justify-center flex-col md:flex-row items-center w-full gap-8 md:gap-16 lg:gap-20 xl:gap-24">
           {/* images container  */}
-          <div className="flex justify-center items-center">
+          <div className="flex justify-center items-center w-1/2 min-w-[300px] max-w-[450px] ">
             <img
-              className="w-[400px] max-h-[580px]"
+              className="w-full max-h-[700px]"
               src={`${baseURL}/Images/${product.imgs[0]}`}
             />
           </div>
           {/* details container  */}
-          <div className="flex flex-col gap-4 w-[550px]">
+          <div className="flex flex-col gap-4 text-center md:text-left md:w-[550px]">
             <h1 className="text-5xl text-zinc-900 font-bold ">
               {product.title}
             </h1>
             <h2 className="text-pinky text-4xl font-bold">{product.price}DT</h2>
-            <p className="text-lg text-gray-900 w-11/12">
+            <p className="text-md text-gray-900 w-full md:w-11/12">
               {product.desc} Lorem ipsum dolor sit amet consectetur adipisicing
               elit. Nemo optio architecto quos repudiandae quidem sit.
             </p>
@@ -109,27 +113,29 @@ function ProductIdPage() {
               <input
                 type="text"
                 name="username"
-                className="px-3 py-2 border border-gray-300 rounded focus:outline-none focus:border-pink-400 text-zinc-900 h-14 w-4/5"
+                className="px-3 py-2 border border-gray-300 rounded focus:outline-none focus:border-pink-400 text-zinc-900 h-14 md:w-full lg:w-4/5 w-4/5 mx-auto md:mx-0"
                 placeholder="Full Name..."
                 required
               />
               <input
                 type="email"
                 name="email"
-                className="px-3 py-2 border border-gray-300 rounded focus:outline-none focus:border-pink-400 text-zinc-900 h-14 w-4/5"
+                className="px-3 py-2 border border-gray-300 rounded focus:outline-none focus:border-pink-400 text-zinc-900 h-14 md:w-full lg:w-4/5 w-4/5 mx-auto md:mx-0"
                 placeholder="Email..."
                 required
               />
               <input
                 type="text"
                 name="tel"
-                className="px-3 py-2 border border-gray-300 rounded focus:outline-none focus:border-pink-400 text-zinc-900 h-14 w-4/5"
-                placeholder="Tel Number..."
+                className="px-3 py-2 border border-gray-300 rounded focus:outline-none focus:border-pink-400 text-zinc-900 h-14 md:w-full lg:w-4/5 w-4/5 mx-auto md:mx-0"
+                placeholder="Tel Number of 8 digits..."
+                pattern="[0-9]{8}"
+                maxlength={8}
                 required
               />
               <select
                 name="city"
-                className="h-14 px-4 w-4/5"
+                className="h-14 px-4 md:w-full lg:w-4/5 w-4/5 mx-auto md:mx-0"
                 aria-label="city"
                 required
               >
@@ -143,7 +149,7 @@ function ProductIdPage() {
                 ))}
               </select>
 
-              <article className="rounded-md bg-white shadow-md p-2 px-4 w-4/5 flex items-center justify-between">
+              <article className="rounded-md bg-white shadow-md p-2 px-4 md:w-full lg:w-4/5 w-4/5 mx-auto md:mx-0 flex items-center justify-between">
                 {/* skeleton????x */}
                 <img
                   src={baseURL + "/Images/" + product.imgs[0]}
@@ -157,15 +163,15 @@ function ProductIdPage() {
                 <button
                   type="submit"
                   id="btn"
-                  className="w-4/5 px-8 py-3 font-semibold bg-pinky text-white rounded before:rounded focus:outline-none shadow-md flex items-center gap-3 justify-center"
+                  className="min-h-16 md:w-full lg:w-4/5 w-4/5 mx-auto md:mx-0 px-8 py-3 font-semibold bg-pinky text-white focus:outline-none shadow-md flex items-center gap-3 justify-center"
                 >
                   Order
                   {messageIsLoading && (
-                    <CgSpinnerTwo className="w-6 h-6 animate-spin text-pinky" />
+                    <CgSpinnerTwo className="w-6 h-6 animate-spin text-white" />
                   )}
                 </button>
                 {message && (
-                  <p className="w-4/5 px-8 py-3 font-semibold bg-green-700 mt-3 text-white rounded before:rounded focus:outline-none shadow-md text-center">
+                  <p className="min-h-16 md:w-full lg:w-4/5 w-4/5 mx-auto md:mx-0 px-8 py-3 font-semibold bg-green-700 mt-3 text-white focus:outline-none shadow-md text-center flex justify-center items-center">
                     {message}
                   </p>
                 )}

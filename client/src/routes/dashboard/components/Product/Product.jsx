@@ -23,12 +23,12 @@ function Product({ product: p }) {
   };
   return (
     <div className="flex items-center gap-2">
-      <article className="rounded-md bg-white shadow-md p-4 text-center text-base flex justify-between gap-32 items-center w-[750px]">
+      <article className="rounded-md bg-white shadow-md p-4 text-center text-base flex justify-between gap-32 items-center w-[750px] max-h-32 overflow-hidden">
         {/* skeleton????x */}
         <div className="w-1/2 flex items-center justify-between">
           <img
             src={baseURL + "/Images/" + p.imgs[0]}
-            className="w-20 h-24 border border-zinc-400"
+            className="w-20 border-zinc-400 object-fill"
           />
           <div className=" w-[150px] justify-self-end">{p.title}</div>
         </div>

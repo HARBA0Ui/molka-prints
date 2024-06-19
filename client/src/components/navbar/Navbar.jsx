@@ -3,6 +3,7 @@ import "./navbar.module.css";
 import { CgSearch } from "react-icons/cg";
 import { useState } from "react";
 import apiRequest from "../../lib/apiRequest";
+import { FaCaretRight } from "react-icons/fa";
 
 function Navbar() {
   const navigate = useNavigate();
@@ -16,30 +17,42 @@ function Navbar() {
   };
   return (
     <header>
-      <nav className="bg-pinky w-full h-[15vh] flex my-auto justify-between items-center px-4 md:px-14 lg:px-40 shadow-md">
-        <Link to={"/"} reloadDocument={true}>
+      <nav className="bg-pinky w-full h-[13vh] sm:h-[15vh] flex my-auto justify-between items-center px-4 md:px-14 lg:px-40 shadow-md relative">
+        <Link className="h-full flex items-center justify-center" to={"/"} reloadDocument={true}>
           <img
             src="/logo.jpg"
-            className="w-20 h-20 rounded-full drop-shadow-md hover:scale-110 transition-all"
+            className="w-16 h-16 sm:w-20 sm:h-20 rounded-full drop-shadow-md hover:scale-110 transition-all"
           />
         </Link>
-        <form onSubmit={handleSubmit}>
-          <div className="w-[250px] md:w-[350px] flex items-center bg-white gap-4 h-fit py-2 px-4 rounded-full">
-            <input
-              type="text"
-              placeholder="Search..."
-              className="w-[90%] md:flex-1 text-sm md:text-base"
-              value={searchInput}
-              onChange={(e) => setSearchInput(e.target.value)}
-            />
-            <button
-              type="submit"
-              className="cursor-pointer transition-all p-2 pr-[10px] rounded-full flex justify-center items-center text-white bg-pinky hover:bg-darkPruple "
+        <div className="flex gap-4 items-center">
+          <form onSubmit={handleSubmit}>
+            <div className="w-[250px] md:w-[350px] flex items-center bg-white gap-4 h-fit py-2 px-4 rounded-full">
+              <input
+                type="text"
+                placeholder="Search..."
+                className="w-[90%] md:flex-1 text-sm md:text-base"
+                value={searchInput}
+                onChange={(e) => setSearchInput(e.target.value)}
+              />
+              <button
+                type="submit"
+                className="cursor-pointer transition-all p-2 pr-[10px] rounded-full flex justify-center items-center text-white bg-pinky hover:bg-darkPruple "
+              >
+                <CgSearch className="w-4 h-4 md:w-5 md:h-5 " />
+              </button>
+            </div>
+          </form>
+          <div className="flex justify-center items-center sm:relative absolute top-full right-0">
+            <Link
+              to={"/products"}
+              id="btn"
+              className="group mx-auto px-3 py-2 sm:py-3 sm:px-5 flex justify-center items-center gap-1 !rounded-none bg-darkPruple sm:bg-white sm:text-pinky sm:hover:text-white text-white !rounded-bl-md sm:!rounded-tr-md"
             >
-              <CgSearch className="w-3 h-3 md:w-5 md:h-5 " />
-            </button>
+              Products
+              <FaCaretRight className="group-hover:translate-x-2 w-5 h-5 transition-all" />
+            </Link>
           </div>
-        </form>
+        </div>
       </nav>
     </header>
   );

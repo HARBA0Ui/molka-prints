@@ -68,6 +68,9 @@ input[type="file"] {
   position: relative;
   z-index: 1;
   transition: 0.1s ease-in;
+  border-top-left-radius: 1rem;
+  border-bottom-right-radius: 1rem;
+  overflow: hidden;
 }
 
 #btn::before {
