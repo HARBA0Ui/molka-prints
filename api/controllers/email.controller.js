@@ -1,7 +1,7 @@
 import nodemailer from "nodemailer";
 
 export const sendEmail = async (req, res) => {
-  const { name, tel, email, message } = req.body;
+  const { username, tel, email, city}  = req.body;
 
   try {
     let transporter = nodemailer.createTransport({
@@ -17,16 +17,18 @@ export const sendEmail = async (req, res) => {
       to: process.env.EMAIL_USER,
       subject: "Nouvelle commande",
       html: `
-        <h2>Nouvelle commande reçue</h2>
-        <p><strong>Nom:</strong> ${name}</p>
-        <p><strong>Email:</strong> ${email}</p>
-        <p><strong>Message:</strong> ${message}</p>
+        <h1>Nouvelle commande reçue</h1>
+        <h2><strong>Full Name:</strong> ${username}</h2>
+        <h2><strong>Email:</strong> ${email}</h2>
+        <h2><strong>Tel Number:</strong> ${tel}</h2>
+        <h2><strong>City:</strong> ${city}</h2>
       `,
     };
 
     let info = await transporter.sendMail(mailOptions);
-    res.status(200).send("Email sent: " + info.response);
+    return res.status(200).json({ message: "Order is placed successfully" });
   } catch (error) {
-    res.status(500).send(error.toString());
+    console.log(error)
+    return res.status(500).send(error.toString());
   }
 };

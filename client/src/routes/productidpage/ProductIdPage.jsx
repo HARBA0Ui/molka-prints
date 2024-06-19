@@ -7,8 +7,32 @@ import { CgSpinnerTwo } from "react-icons/cg";
 function ProductIdPage() {
   const { id } = useParams();
 
+  const [message, setMessage] = useState("");
   const [isLoading, setIsLoading] = useState(true);
+  const [messageIsLoading, setMessageIsLoading] = useState(false);
   const [product, setProduct] = useState();
+
+  const handleSubmit = async (e) => {
+    setMessage("");
+    e.preventDefault();
+    setMessageIsLoading(true);
+    try {
+      const formData = new FormData(e.target);
+      const username = formData.get("username");
+      const tel = formData.get("tel");
+      const email = formData.get("email");
+      const city = formData.get("city");
+
+      const userInfo = { username, tel, email, city };
+
+      const res = await apiRequest.post("/email/send-email", userInfo);
+      setMessage(res.data.message);
+    } catch (err) {
+      console.log(err);
+    } finally {
+      setMessageIsLoading(false);
+    }
+  };
 
   const cityOptions = [
     "Ariana",
@@ -57,7 +81,7 @@ function ProductIdPage() {
     <div className="m-auto flex justify-center items-center min-h-[70vh] w-[70vw] py-20">
       {isLoading ? (
         <div className="h-full w-full flex justify-center items-center flex-1">
-          <CgSpinnerTwo className="w-6 h-6 animate-spin mx-auto text-pinky" />
+          <CgSpinnerTwo className="w-6 h-6 animate-spin mx-auto text-white" />
         </div>
       ) : (
         <div className="flex justify-center items-center w-full gap-32">
@@ -81,38 +105,35 @@ function ProductIdPage() {
             <p className="text-black font-bold">
               To place an order, please fill in these fields:
             </p>
-            <form className="flex flex-col gap-5">
+            <form className="flex flex-col gap-5" onSubmit={handleSubmit}>
               <input
-                type="email"
-                id="email"
-                name="email"
+                type="text"
+                name="username"
                 className="px-3 py-2 border border-gray-300 rounded focus:outline-none focus:border-pink-400 text-zinc-900 h-14 w-4/5"
-                placeholder="Full Namex..."
+                placeholder="Full Name..."
                 required
               />
               <input
                 type="email"
-                id="email"
-                name="email"
-                className="px-3 py-2 border border-gray-300 rounded focus:outline-none focus:border-pink-400 text-zinc-900 h-14 w-4/5"
-                placeholder="Tel Number..."
-                required
-              />
-              <input
-                type="email"
-                id="email"
                 name="email"
                 className="px-3 py-2 border border-gray-300 rounded focus:outline-none focus:border-pink-400 text-zinc-900 h-14 w-4/5"
                 placeholder="Email..."
+                required
+              />
+              <input
+                type="text"
+                name="tel"
+                className="px-3 py-2 border border-gray-300 rounded focus:outline-none focus:border-pink-400 text-zinc-900 h-14 w-4/5"
+                placeholder="Tel Number..."
                 required
               />
               <select
                 name="city"
                 className="h-14 px-4 w-4/5"
                 aria-label="city"
-                placeholder="Enter your city"
+                required
               >
-                <option value="" disabled selected>
+                <option value="" disabled select>
                   Enter your city
                 </option>
                 {cityOptions.map((city) => (
@@ -122,26 +143,32 @@ function ProductIdPage() {
                 ))}
               </select>
 
-                <article className="rounded-md bg-white shadow-md p-2 px-4 w-4/5 flex items-center justify-between">
-                  {/* skeleton????x */}
-                  <img
-                    src={baseURL + "/Images/" + product.imgs[0]}
-                    className="w-20 h-24 border border-zinc-400 rounded-sm"
-                  />
-                  <div>
-                    {product.title}
-                  </div>
-                  <div className="font-bold">{product.price}DT</div>
-                </article>
+              <article className="rounded-md bg-white shadow-md p-2 px-4 w-4/5 flex items-center justify-between">
+                {/* skeleton????x */}
+                <img
+                  src={baseURL + "/Images/" + product.imgs[0]}
+                  className="w-20 h-24 border border-zinc-400 rounded-sm"
+                />
+                <div>{product.title}</div>
+                <div className="font-bold">{product.price}DT</div>
+              </article>
 
               <div>
                 <button
                   type="submit"
                   id="btn"
-                  className="w-4/5 px-8 py-3 font-semibold bg-pinky text-white rounded before:rounded focus:outline-none shadow-md"
+                  className="w-4/5 px-8 py-3 font-semibold bg-pinky text-white rounded before:rounded focus:outline-none shadow-md flex items-center gap-3 justify-center"
                 >
                   Order
+                  {messageIsLoading && (
+                    <CgSpinnerTwo className="w-6 h-6 animate-spin text-pinky" />
+                  )}
                 </button>
+                {message && (
+                  <p className="w-4/5 px-8 py-3 font-semibold bg-green-700 mt-3 text-white rounded before:rounded focus:outline-none shadow-md text-center">
+                    {message}
+                  </p>
+                )}
               </div>
             </form>
           </div>
