@@ -15,9 +15,9 @@ export const orderEmail = async (req, res) => {
     let mailOptions = {
       from: email,
       to: process.env.EMAIL_USER,
-      subject: "🛒 Nouvelle commande 🛒",
+      subject: "🛒 New Order 🛒 (website)",
       html: `
-        <h1>Nouvelle commande reçue: <strong>${title} #${id}</strong></h1>
+        <h1>New order received: <strong>${title} #${id}</strong></h1>
         <h2><strong>Full Name:</strong> ${username}</h2>
         <h2><strong>Email:</strong> ${email}</h2>
         <h2><strong>Tel Number:</strong> ${tel}</h2>
@@ -48,13 +48,13 @@ export const contactEmail = async (req, res) => {
     let mailOptions = {
       from: email,
       to: process.env.EMAIL_USER,
-      subject: "✉️ Nouveux Contact ✉️",
+      subject: "✉️ New Contact ✉️ (website)",
       html: `
-        <h1>Nouveux Contact</h1>
+        <h1>New Contact ✉️</h1>
         <h2><strong>Email:</strong> ${email}</h2>
         <h2><strong>Message:</strong></h2>
         <p>${desc}</p>
-      `,
+      `
     };
 
     let info = await transporter.sendMail(mailOptions);

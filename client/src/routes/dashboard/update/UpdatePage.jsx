@@ -31,13 +31,11 @@ function UpdatePage() {
       formData.append("desc", desc);
       formData.append("price", price);
       //addimages
-      console.log("length: ", images);
-      console.log(product.imgs);
       if (images.length > 0) {
         Array.from(images).forEach((img) => formData.append("images", img));
       }
       const res = await apiRequest.put(`/products/${id}`, formData);
-      console.log(res);
+      // console.log(res);
       window.location.reload();
     } catch (err) {
       console.log(err);

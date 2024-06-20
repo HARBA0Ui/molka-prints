@@ -46,7 +46,7 @@ function ProductsPage() {
   };
 
   return (
-    <div className="py-10 w-[90vw] m-auto flex flex-col">
+    <div className="py-10 w-[90vw] md:w-[80vw] m-auto flex flex-col">
       <h1 className="text-zinc-800 text-4xl md:text-5xl uppercase font-bold mb-3 text-center">
         Our Products
       </h1>
@@ -65,7 +65,7 @@ function ProductsPage() {
         <button
           onClick={handleLoadMore}
           id="btn"
-          className="m-auto mt-4 py-3 px-6 bg-pinky text-white rounded relative before:rounded"
+          className="m-auto mt-4 py-3 px-6 bg-pinky text-white relative before:rounded"
           disabled={loadingMore}
         >
           {loadingMore ? "Loading..." : "Load More"}

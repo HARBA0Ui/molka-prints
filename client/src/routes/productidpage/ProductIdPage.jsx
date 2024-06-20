@@ -90,7 +90,7 @@ function ProductIdPage() {
       ) : (
         <div className="flex justify-center flex-col md:flex-row items-center w-full gap-8 md:gap-16 lg:gap-20 xl:gap-24">
           {/* images container  */}
-          <div className="flex justify-center items-center w-1/2 min-w-[300px] max-w-[450px] ">
+          <div className="flex justify-center items-center w-1/2 min-w-[200px] max-w-[450px] ">
             <img
               className="w-full max-h-[700px]"
               src={`${baseURL}/Images/${product.imgs[0]}`}
@@ -98,13 +98,12 @@ function ProductIdPage() {
           </div>
           {/* details container  */}
           <div className="flex flex-col gap-4 text-center md:text-left md:w-[550px]">
-            <h1 className="text-5xl text-zinc-900 font-bold ">
+            <h1 className="text-4xl sm:text-5xl text-zinc-900 font-bold ">
               {product.title}
             </h1>
-            <h2 className="text-pinky text-4xl font-bold">{product.price}DT</h2>
+            <h2 className="text-pinky text-3xl sm:text-4xl font-bold">{product.price}DT</h2>
             <p className="text-md text-gray-900 w-full md:w-11/12">
-              {product.desc} Lorem ipsum dolor sit amet consectetur adipisicing
-              elit. Nemo optio architecto quos repudiandae quidem sit.
+              <strong>Description: </strong>{product.desc}
             </p>
             <p className="text-black font-bold">
               To place an order, please fill in these fields:
@@ -149,13 +148,13 @@ function ProductIdPage() {
                 ))}
               </select>
 
-              <article className="rounded-md bg-white shadow-md p-2 px-4 md:w-full lg:w-4/5 w-4/5 mx-auto md:mx-0 flex items-center justify-between">
+              <article className="text-sm rounded-md bg-white shadow-md p-2 px-4 md:w-full lg:w-4/5 w-4/5 mx-auto md:mx-0 flex items-center justify-between">
                 {/* skeleton????x */}
                 <img
                   src={baseURL + "/Images/" + product.imgs[0]}
-                  className="w-20 h-24 border border-zinc-400 rounded-sm"
+                  className="w-16 object-fill max-h-24 border border-zinc-400 rounded-sm"
                 />
-                <div>{product.title}</div>
+                <div className="">{product.title}</div>
                 <div className="font-bold">{product.price}DT</div>
               </article>
 

@@ -1,4 +1,4 @@
-import { AiFillSetting, AiFillSwitcher, AiOutlineLogout } from "react-icons/ai";
+import {  AiFillSwitcher, AiOutlineLogout } from "react-icons/ai";
 import { CgMathPlus } from "react-icons/cg";
 
 import { Link } from "react-router-dom";
@@ -9,7 +9,7 @@ import "./sidebar.module.css";
 function Sidebar() {
   return (
     <div>
-      <aside className="w-32 bg-pinky flex flex-col pt-12 h-full min-h-[85vh] gap-4 text-pinky text-sm">
+      <aside className="hidden md:flex w-32 bg-pinky flex-col pt-12 h-full min-h-[85vh] gap-4 text-pinky text-sm">
         <ul className="flex flex-col gap-4 flex-1">
           <Link
             to={"/dashboard"} reloadDocument={true}
@@ -22,12 +22,6 @@ function Sidebar() {
             className="flex gap-2 bg-white w-full items-center px-2 py-3"
           >
             <CgMathPlus className="w-6 h-6" /> <span>Create</span>
-          </Link>
-          <Link
-            to={"/dashboard/settings"}
-            className="flex gap-2 bg-white w-full items-center px-2 py-3"
-          >
-            <AiFillSetting className="w-6 h-6" /> <span>Settings</span>
           </Link>
         </ul>
         <LogoutBtn btnClassName="flex gap-2 bg-darkPruple text-white items-center px-2 py-3 sticky bottom-0 w-full">

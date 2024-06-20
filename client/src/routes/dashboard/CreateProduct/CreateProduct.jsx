@@ -35,7 +35,6 @@ const CreateProduct = () => {
       setDesc("");
       setPrice("");
       setImages([]);
-      console.log("res: ", res);
       navigate("/dashboard");
     } catch (err) {
       console.log(err);

@@ -16,8 +16,8 @@ function Navbar() {
     setSearchInput("");
   };
   return (
-    <header>
-      <nav className="bg-pinky w-full h-[13vh] sm:h-[15vh] flex my-auto justify-between items-center px-4 md:px-14 lg:px-40 shadow-md relative">
+    <header className="w-screen">
+      <nav className="bg-pinky w-screen h-[13vh] sm:h-[15vh] flex my-auto justify-between items-center px-4 md:px-14 lg:px-40 shadow-md relative">
         <Link className="h-full flex items-center justify-center" to={"/"} reloadDocument={true}>
           <img
             src="/logo.jpg"

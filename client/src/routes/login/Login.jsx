@@ -2,7 +2,7 @@ import apiRequest from "../../lib/apiRequest";
 
 import { FaKey, FaUser } from "react-icons/fa";
 import "./login.module.css";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useContext, useEffect, useState } from "react";
 import { CgSpinnerTwo } from "react-icons/cg";
 import { AuthContext } from "../../context/AuthContext";
@@ -84,6 +84,13 @@ function LoginPage() {
               <FaKey className="text-pinky" />
             </div>
           </div>
+
+          <Link
+            to={"/forgot-password"}
+            className="w-4/5 mx-auto text-darkPruple"
+          >
+            <span className="border-b-2 border-b-darkPruple">Forgot password?</span>
+          </Link>
 
           <div className="mx-auto w-4/5">
             <button

@@ -11,13 +11,14 @@ model Admin {
   id       String @id @default(auto()) @map("_id") @db.ObjectId
   username String @unique
   password String
+  email    String
 }
 
 model Product {
-  id        String    @id @default(auto()) @map("_id") @db.ObjectId
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
   title     String
   desc      String
   price     Float
   imgs      String[] @default([])
-  createdAt DateTime  @default(now())
+  createdAt DateTime @default(now())
 }

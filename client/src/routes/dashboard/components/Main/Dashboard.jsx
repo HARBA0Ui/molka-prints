@@ -41,7 +41,6 @@ function Dashboard() {
       setLoadingMore(true);
       const res = await apiRequest.get(`/products?page=${page + 1}&limit=${limit}`);
       const newProducts = res.data;
-      https://www.instagram.com/reel/C8ZWkvoo8u6/?utm_source=ig_web_copy_link
       setProducts((prevProducts) => [...prevProducts, ...newProducts]);
       setPage((prevPage) => prevPage + 1);
       if (newProducts.length < limit) {
@@ -87,10 +86,10 @@ function Dashboard() {
   return (
     <div className="w-full flex flex-col items-center pb-10">
       <Title title="Admin Dashboard" />
-      <div className="flex justify-between items-center w-[700px] mb-10">
+      <div className="flex justify-between items-center w-[90vw] lg:w-[700px] mb-10">
         <Link
           to="/dashboard/create"
-          className="flex gap-2 text-lg items-center px-4 py-2 rounded-tr-md rounded-bl-md text-white bg-darkPruple hover:bg-pinky transition-all"
+          className="flex gap-2 text-lg items-center px-4 py-2 rounded-tr-md rounded-bl-md text-white bg-darkPruple hover:bg-pinky transition-all w-[170x] md:w-[270px]"
         >
           <CgMathPlus className="w-5 h-5" /> Create a new product
         </Link>
@@ -101,7 +100,7 @@ function Dashboard() {
               placeholder="Search..."
               value={searchField}
               onChange={(e) => setSearchField(e.target.value)}
-              className="bg-darkPruple placeholder:text-white/80"
+              className="bg-darkPruple placeholder:text-white/80 w-full"
             />
             <button
               type="submit"
