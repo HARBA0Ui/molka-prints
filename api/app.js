@@ -25,7 +25,8 @@ app.use("/api/test", testRoute);
 app.use("/api/products", productsRoute);
 app.use("/api/email", emailRoute)
 app.use("/api/settings", settingsRoute)
-
+/*
 app.listen(8800, () => {
   console.log("The server is running!!");
 });
+*/
