@@ -16,6 +16,10 @@ app.use(cookieParser());
 app.use(cors({ origin: "http://localhost:5173", credentials: true }));
 app.use(express.static("public"))
 
+app.get("/", (req, res) => {
+  console.log("hello")
+})
+
 app.use("/api/auth", authRoute);
 app.use("/api/test", testRoute);
 app.use("/api/products", productsRoute);
