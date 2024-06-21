@@ -1,2 +1,2 @@
-const baseURL = "http://localhost:8800";
+const baseURL = "https://molka-prints.vercel.app/";
 export default baseURL;
